@@ -141,9 +141,10 @@ for c in country:
 
 import random
 
-num = []
-for i in range(4):
-    num.append(random.randrange(0,10))
+num1 = set()
+while(len(num1)<4):
+    num1.add(random.randrange(0,10))
+num = list(num1)
 cnt = 0
 
 while(True):

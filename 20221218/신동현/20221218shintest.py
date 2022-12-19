@@ -55,10 +55,21 @@ print(func(n))  <<리스트로 출력 형식을 못찾음 ㅠ
   5 : Σ5 = 5+4+3+2+1 = 15
 '''
 def calculator(n):
-    if n % 2 == 0:
+    if n % 2 == 0:#입력 된 수가 짝수일 경우
         print("%d!" %n,end=" = ")
-        result = 1
-        
+        result = 1 #얘네는 뭐야
+        for i in range(n,0,-1): #얘도 짜증나 ㅡㅡ
+            print("%d*" % i if i>1 else "%d = "%i,end="")#더싫어 ㅠ
+            result *= i#죽여
+    else:#입력된 수가 짝수가 아닌경우
+        print("Σ%d" % n,end=" = ")
+        result = 0
+        for i in range(n,0,-1):
+            print("%d+" % i if i>1 else "%d = "%i, end="")
+            result += i
+    return result #계산된 숫자 출력
+num = int(input("숫자를 입력하세요."))
+print(calculator(num))
 
 '''
 3. 입력된 자연수가 홀수인지 짝수인지 판별해 주는 함수를
@@ -69,8 +80,21 @@ def calculator(n):
 자연수를 입력하세요 : 25
 25 숫자는 홀수 입니다.
 '''
+num = int(input("자연수를 입력하세요 :"))
+if num%2 == 0:
+    print(num,"은 짝수입니다.")
+else:
+    print(num,"은 홀수입니다.")
+print(num)
+#이것은 다람쥐식
+b1 = lambda x: x%2==1
+b2 = int(input("자연수를 입력하세요 :"))
 
-
+if b1(b2) == True:
+    print(b2,'홀수 입니다.')
+else:
+    print(b2,'짝수입니다.')
+#이것은 람다식
 '''
 4. 화면에서 주민등록번호를 000000-0000000 형태로 입력받는다.
    주민등록번호 뒷자리의  첫 번째 숫자는 성별을 나타낸다. 
@@ -79,9 +103,22 @@ def calculator(n):
    그외는 내국인아님으로 출력한다.
    -이 없는 경우는 '주민번호 입력오류' 출력하기
 '''
+jumin = input("000000-0000000 형태로 입력하시오.")
+try :
+    index = jumin.index("-")
+    if(index != 6) :
+        raise ValueError
+    gender = jumin[index+1:index+2]
+    if(gender== '1' or gender == '3') :
+        print("남자")
+    elif (gender== '2' or gender == '4') :
+        print("여자")
+    else :
+        print("내국인 아님")
+except :
+    print("주민번호 입력 오류")    
 
-    
-    
+
 '''
 5. 소문자와 숫자로 이루어진 문자를 암호화 하고 복호화 하는 프로그램 작성하기
   원래 문자 : a b c d e f g h i j k l m n o p q r s t u v w x y z 
@@ -94,12 +131,34 @@ def calculator(n):
 `~!wer
 복호화
 abc123
-'''    
+'''   
+plain = "abcdefghijklmnopqrstuvwxyz0123456789" 
+cyper = "`~!@#$%^&*()-_+=|[]{};:,./qwertyuiop" 
+ 
+src = input("문자를 입력하세요 : ")
+result = ""
+for i in range(0, len(src)):
+      result += cyper[plain.find(src[i])]
+print("암호화")            
+print(src,"=",result)       
 
+src = result
+result = ""
+for i in range(0, len(src)):
+   result += plain[cyper.find(src[i])]
+
+print("복호화")            
+print(src,"=",result)    
 
 '''
 6. 16진수를 입력하면 16진수 인지 아닌지 판단하여
    16진수가 맞으면 10진수로 변경하기.
    16진수가 아닌 경우 16진수 아님을 출력하기
 '''
-
+num16=input("16진수 입력 : ")
+try :
+   num10= int(num16,16) #16진수가 아니면 예외 발생
+except ValueError :
+   print(num16,"는 16진수가 아닙니다.")
+else :
+    print(num16,"의 10진수:",num10)

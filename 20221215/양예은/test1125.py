@@ -148,6 +148,7 @@ num = list(num1)
 print(num)
 cnt = 0
 
+
 while(True):
     mnum = list(map(int, input("숫자 네개를 입력하세요(띄어쓰기로 구분) : ").split()))
     o = 0

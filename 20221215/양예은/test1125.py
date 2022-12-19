@@ -52,7 +52,7 @@ hap = 0
 a = num
 while(a > 0):
     hap += a % 10
-    a //= 10
+    a //= 1
 print(num,"자리수의 합 :",hap)
 
 '''
@@ -139,68 +139,39 @@ for i in country.keys() :
 # 숫자야구는 알지만 코딩하기에 너무 어려워서
 #구글링해서 가져오긴 했는데 계속 보면서 이해하는중...
 
-from random import randint
+import random
 
-def generate_numbers():
-    numbers = []
-    i = 0
-    new_number = 0
-    while i <3:
-        new_number = randint(0,9)
-    if new_number not in numbers:
-        numbers.append(new_number)
-        i += 1
-    print("0과 9사이의 서로 다른 숫자 3개를 랜덤한 순서로 뽑기.\n")
-    return numbers
+num1 = set()
+while(len(num1)<4):
+    num1.add(random.randrange(0,10))
+num = list(num1)
+print(num)
+cnt = 0
 
-def take_guess():
-    print("숫자 3개를 하나씩 차례대로 입력하세요.")
-    i =0
-    new_guess =[]
-    while i < 3:
-        gue_number = int(input("{}번째 숫자를 입력하세요.".format(i + 1)))
-        if gue_number > 9:
-            print("범위를 벗어나는 숫자입니다. 다시 입력하세요.")
-            continue
-        if gue_number in new_guess:
-            print("중복되는 숫자입니다. 다시 입력하세요.")
+while(True):
+    mnum = list(map(int, input("숫자 네개를 입력하세요(띄어쓰기로 구분) : ").split()))
+    o = 0
+    s = 0
+    b = 0
+    cnt += 1
+
+    for i in range(4):
+        if(num[i] == mnum[i]):
+            s += 1
+        elif(mnum[i] in num):
+            b += 1
         else:
-            new_guess.append(gue_number)
-            i += 1
-        return new_guess
+            o += 1
 
-def get_score(guess,solution):
-    strike_count = 0
-    ball_count = 0
-    i = 0
-    
-    while i < len(guess):
-        if guess[i] == solution[i]:
-            strike_count += 1
-            i += 1
-        elif guess[i] in solution:
-            ball_count += 1
-            i += 1
-        else:
-            i += 1
-    return strike_count,ball_count
-    
-#여기서부터 숫자야구 게임 시작
-answer = generate_numbers()
-tries = 0
-
-while 1:
-    guess = take_guess()
-    strike,ball = get_score(guess,answer)
-    print("{}S {}B".format(strike,ball))
-    
-    if strike == 3:
-        tries += 1
-        break
+    if(o == 4):
+        print("아웃")
     else:
-        tries += 1
-        
-print("정답! {}번만에 숫자3개의 값과 위치를 모두 맞추셨습니다".format(tries))
+        print("%ds, %2db" % (s,b))
+
+    if(s == 4):
+        break;
+
+print(str(cnt)+"번만에 승리")
     
     
     

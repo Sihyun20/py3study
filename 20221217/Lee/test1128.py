@@ -54,13 +54,13 @@ N=int(input("자연수를 입력하세요: "))
 if (N % 2 == 0 ):
     for i in range(N, 0, -1):
         evennumbers *= i
-        print(evennumbers)
+    print(evennumbers)
 elif (N % 2 == 1 ):
     for i in range(N, 0, -1):
         oddnumbers += i
-        print(oddnumbers)
+    print(oddnumbers)
         
-#결과값이 이상함... 음 왜인지 모르겠ㅇ..
+#print가 for구문안에 있어서 계속 반복됨
 
 
 
@@ -122,9 +122,9 @@ try :
     idx = id_num.index("-")
 except :
     print("주민번호 입력오류")
-if  id_num[7] == '1' or '3': 
+if  id_num[7] == '1' or id_num[7] =='3': 
     print("남자")
-elif id_num[7] == '2' or '4':
+elif id_num[7] == '2' or id_num[7] =='4':
     print("여자")
 else : 
     print("내국인아님")
@@ -179,7 +179,7 @@ try:
 except ValueError :
     print("16진수 아님")
 else:
-    print(int(num_16,10))
+    print(num_16)
 
 
 var = (input("16진수 입력 :"))
@@ -188,12 +188,14 @@ if ('0' <= var <= '9') or ('A' <= var <= 'F') or ('a' <= var <= 'f') :
     print("10진수 ==> ",int(var,16))
 else :
     print("16진수가 아닙니다.")
+#이건 한자리만 가능한 코드 구글링한건데 이건 문제가 있는 코드
 
-
-#해도해도 이해가 안되는것이...
-
-
-
+hexa = input("16진수를 입력하세요 : ")
+if "0x" in hexa:
+    print(int(hexa,16))
+else:
+    print("16진수 아님")
+#시현이 답인데 이게 직관적이고 이해하기 쉬운 코드라고 느낌 참고하겠음.
 
 
 

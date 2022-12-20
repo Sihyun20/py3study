@@ -21,7 +21,7 @@ print(10,20,30,40,50)
 print("abc"*3)
 print('abc'*3)
 #문자열+숫자 안됨.
-print("학번:"+100) #오류발생 + 가 붙어서
+print("학번:"+100) #오류발생
 print("학번:",100)
 print("학번:"+"100") #문자열간의 +연산은 가능함
 print("학번:"+str(100)) #str() : 문자열로 변환
@@ -196,7 +196,7 @@ else :
    print("F학점")                
    print("불합격입니다.")
 
-score = 80    
+score = 50    
 if(score >= 60) :
    print("합격입니다.")
    print("자격증을 받으러 오세요")   
@@ -324,9 +324,6 @@ for i in range(1,h+1) :
 for i in range(1,h+1) :
    print("*"*i)
 
-for i in range(1,h+1):
-    print("*"*i)
-
 '''
 2. 역 직각 삼각형 출력하기
 *****
@@ -374,7 +371,6 @@ for i in range(1,h+1,1) :
   문자열.index(문자) : 문자열에서 문자의 위치 리턴
                      문자가 없는 경우 오류 발생
 '''
-
 a = "hello"
 #a 문자열에서 l문자의 갯수 출력하기
 cnt = 0
@@ -382,7 +378,6 @@ cnt = 0
 for i in range(len(a)) : # 0 ~ 4까지값
     if a[i] == 'l' :
         cnt += 1
-        
 print(a,"에서 l 문자의 갯수:",cnt)  
       
 print(a,"에서 l 문자의 갯수:",a.count('l'))  

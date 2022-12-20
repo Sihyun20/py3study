@@ -71,11 +71,11 @@ if __name__ == '__main__' :
     print(rect1)
     print(rect2)
     if rect1 > rect2 :
-        print("%s 면적이 더 큰 사가형 입니다." % rect1.area())
+        print("%s 면적이 더 큰 사각형 입니다." % rect1.area())
     elif rect1 < rect2 :       
-        print("%s 면적이 더 큰 사가형 입니다." % rect2.area())
+        print("%s 면적이 더 큰 사각형 입니다." % rect2.area())
     elif rect1 == rect2 :       
-        print("면적이 같은 사가형 입니다.")
+        print("면적이 같은 사각형 입니다.")
 
 #코드는 맞는거 같은 결과값 print가 __repr__이 왜 출력이 안되는지 모르겠음
 #소스는 코드문제들 중 Car클래스문제 참고해서 클래스 만들었고 

@@ -202,17 +202,16 @@ import re
 #sub사용하기 위해서 re module을 import
 data= 'hong:90,lee:80,kim:75,park:50,song:60'
 type(data) #str
-numbers = re.findall(r'\d+', data)
+numbers = re.findall(r'\d+', data) #숫자만 빼오기
 print(numbers)
-numbers=list(map(int,numbers))
+numbers=list(map(int,numbers)) #str => int
 ssum=0
 for i in numbers :
     ssum += i
     mean=ssum/len(numbers)
 print("총합:%d ,평균:%.1f" % (ssum,mean))
 
-
-
+#str을 int로 변경해서 for구문으로 sum을 만들고 int로 만든 리스트의 len로 나눠서 평균구함
 
 
 

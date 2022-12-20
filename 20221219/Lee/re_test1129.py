@@ -63,23 +63,42 @@ class Rect :
         return self.area() == other.area()
     def __repr__(self):
         return("(%d,%d), 넓이:%d,둘레:%d" \
-               % self.width,self.height,self.area(),self.length())
+               % (self.width,self.height,self.area(),self.length()))
 
 if __name__ == '__main__' :
     rect1=Rect(10,10)
     rect2=Rect(10,10)
+    print(rect1)
+    print(rect2)
     if rect1 > rect2 :
-        print("%d 면적이 더 큰 사가형 입니다." % rect1.area())
+        print("%s 면적이 더 큰 사가형 입니다." % rect1.area())
     elif rect1 < rect2 :       
-        print("%d 면적이 더 큰 사가형 입니다." % rect2.area())
+        print("%s 면적이 더 큰 사가형 입니다." % rect2.area())
     elif rect1 == rect2 :       
         print("면적이 같은 사가형 입니다.")
 
 #코드는 맞는거 같은 결과값 print가 __repr__이 왜 출력이 안되는지 모르겠음
 #소스는 코드문제들 중 Car클래스문제 참고해서 클래스 만들었고 
 #main부분은 __name__='__main__'이라는게 생소해서 답안 참고했음
+#=>
+#출력값이 여러개일때 ()로 묶어줘야함 꼭
+#숫자요소 입력된 변수를 출력해줘야 문제의 결과값처럼 나올 수 있음 그래서
+#print(rect1), print(rect2) 추가해줌 그러니까 출력됨.
 
+class rectangle:
+     def __init__(self,width,height):
+         self.width = width
+         self.height = height
+     def area(self):
+         return self.width*self.height
+     def round(self):
+         return(self.width + self.height)*2
 
+a = int(input("가로 : "))
+l = int(input("세로 : "))
+r = rectangle(a,l)
+print("둘레는 %d이고 넓이는 %d이다."%(r.round(),r.area()))
+#예은이 코드 입력받아서 출력하는 로직?은 좋음
 
 
 '''
@@ -102,13 +121,14 @@ class UpgradeCalculator(Calculator) :
     def minus(self, other):
         self.value -= other
 
-main = UpgradeCalculator
-main.add(5)
+main = UpgradeCalculator()
+main.add(3)
 main.minus(4)
 print(main.value)
 
 #에러가 나는데 왜 나는지 모르겠음
 #TypeError: add() missing 1 required positional argument: 'other'
+# => UpgradeCalculator() ()missing...omg
 
 
 
@@ -121,17 +141,21 @@ MaxLimitCalculator 클래스에서 value 값은 절대 100 이상의 값을 가�
 '''
     
 class MaxLimitCalculator(Calculator) :
-     def value(self,v) :
+     def value1(self,v) :
         self.value += v
-        if self.speed > 100 :
-            self.speed = 99
-        print("Max클래스value:%d" % self.speed)
+        if self.value > 100 :
+            self.value = 99
+        print("Max클래스value:%d" % self.value)
 
 mlc = MaxLimitCalculator()
-mlc.value(200)
+mlc.value1(200)
 
 #+= 줄이 오류 unsupported operand type(s) for +=: 'method' and 'int'
 #뭐가 문제인지 모르겠음 코드에 예시문제 car부분 참고한건데 type을 어떻게 고쳐야되는지 모르겠음
+#=>#
+#def함수 변수명이 value와 같아서 오류가 났었다 그러므로 변수명에 신경쓸것.
+# Calculator를 상속했으니 value라는 변수명으로 값을 받아야 했는데 그렇게 안했었다.
+#예시문제의 car를 보고하다보니 그런 오류를 범함.
 
 
 
@@ -169,23 +193,24 @@ for i in range(len(sign)) :
 
 
 
-
 '''
 5. 학생들의 시험 성적가 다음과 같은 경우 성적의 합계와 평균을 출력하는 코드를 작성하시오
 [결과]
 총합: 355 ,평균: 71.0
 '''
 import re
+#sub사용하기 위해서 re module을 import
 data= 'hong:90,lee:80,kim:75,park:50,song:60'
-c = data.split(",")
-print(c)
-numbers = re.sub(r'[^0-9]', '', c)
+type(data) #str
+numbers = re.findall(r'\d+', data)
 print(numbers)
-#리스트에서 숫자만 뽑아내는 걸 해서 하려고했는데 에러가 납니다..
-ssum=sum(numbers)
-mean=ssum/len(numbers)
-print("총합:%d ,평균:%d" % (ssum,mean))
-#오류가 있어서 결과는 도출하지 못했음.
+numbers=list(map(int,numbers))
+ssum=0
+for i in numbers :
+    ssum += i
+    mean=ssum/len(numbers)
+print("총합:%d ,평균:%.1f" % (ssum,mean))
+
 
 
 

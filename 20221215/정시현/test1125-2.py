@@ -145,6 +145,7 @@ num1 = set()
 while(len(num1)<4):
     num1.add(random.randrange(0,10))
 num = list(num1)
+print(num)
 cnt = 0
 
 while(True):

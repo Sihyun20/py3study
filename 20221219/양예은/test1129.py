@@ -22,17 +22,34 @@ class rectangle:
     def __init__(self,width,height):
         self.width = width
         self.height = height
-    def area(self):
-        return self.width*self.height
-    def round(self):
-        return(self.width + self.height)*2
+    def __repr__(self) :  #객체 print시 호출되는 함수
+        return "(%d,%d), 넓이:%d,둘레:%d" % \
+       (self.width,self.height,self.area(),self.length())
+    def __gt__(self,other) :
+        return self.area() > other.area()
+    def __lt__(self,other) :
+        return self.area() < other.area()
+    def __eq__(self,other) :
+        return self.area() == other.area()
+    def area(self) :    
+        return self.width * self.height
+    def length(self) :  
+        return (self.width + self.height) * 2
     
-a = int(input("가로 : "))
-l = int(input("세로 : "))
-r = rectangle(a,l)
-print("둘레는 %d이고 넓이는 %d이다."%(r.round(),r.area()))
+if __name__ == "__main__" :
+     rect1 = rectangle(10,20) 
+     rect2 = rectangle(10,10)
+     print("rect1=",rect1)
+     print("rect2=",rect2)
+     if rect1 > rect2 :
+         print(rect1.area(),"면적이 더 큰 사각형 입니다.")
+     elif  rect1 < rect2 :   
+         print(rect2.area(),"더 큰 사각형 입니다.")
+     elif rect1 == rect2 :   
+         print(rect1.area(),"=",rect2.area(),"같은 크기의 사각형 입니다.")
 
-        
+
+
 
 
 '''
@@ -98,19 +115,14 @@ B : -....
 C : -.-.
 '''
 
-dic = {'A':'.-', 'B':'-....', 'C':'-.-.', 'D':'-..', 'E':'.', 'F':'..-.', 'G':'--.',
+code = {'A':'.-', 'B':'-....', 'C':'-.-.', 'D':'-..', 'E':'.', 'F':'..-.', 'G':'--.',
 'H':'....', 'I':'..', 'J':'.---', 'K':'-.-', 'L':'.-..', 'M':'--', 'N':'-.',
 'O':'---', 'P':'.--.', 'Q':'--.-', 'R':'.-.', 'S':'...', 'T':'-', 'U':'..-',
 'V':'...-', 'W':'.--', 'X':'-..-', 'Y':'-.--', 'Z':'--..'}
 
-m = input("모스 부호로 표시할 단어(알파벳 대문자) : ")
-words = m.split('  ')
-for i in words:
-	chars = i.split()
-	for j in chars:
-		print(dic[j], end='')
-	print('', end=' ')
-print()   
+data = input("모스 부호로 표시할 단어(알파벳 대문자) : ")
+for i in range(len(data)) :
+    print(data[i],":",code[data[i]]) 
 
 
 
@@ -119,15 +131,16 @@ print()
 [결과]
 총합: 355 ,평균: 71.0
 '''
+import re
+data = 'hong:90,lee:80,kim:75,park:50,song:60'
 
-data= {'hong':90,'lee':80,'kim':75,'park':50,'song':60}
-
-sum_data = sum(data.values())
-print(sum_data)
-
-average = sum(data.values()) / len(data)
-print(average)
-
+pattern = re.compile("\\d+")
+tlist = re.findall(pattern,data)
+print(type(tlist))
+tlist = list(map(int,tlist))
+print(tlist)
+print("총합:",sum(tlist),
+      ",평균:",sum(tlist)/len(tlist))
     
     
     
